@@ -1,0 +1,23 @@
+{
+  "name": "gen-sql",
+  "version": "0.0.1",
+  "description": "this is a sql generator",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuneAndGreen/gen-sql.git"
+  },
+  "keywords": [
+    "sql",
+    "generator"
+  ],
+  "author": "june_01",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JuneAndGreen/gen-sql/issues"
+  },
+  "homepage": "https://github.com/JuneAndGreen/gen-sql#readme"
+}

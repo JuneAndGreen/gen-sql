@@ -12,28 +12,13 @@ npm install --save gen-sql
 
 ## 初始化
 
-初始的时候，我们需要一张字段映射表，如：
-
-```javascript
-let orm = {
-  table1: {
-    attr1: dbAttr1,
-    attr2: dbAttr2
-  }
-}
-```
-
-其中table1为表名，attr1为我们要呈现的字段，即数据对象的字段，而dbAttr1为数据库中的字段。如数据库中`create_time`字段，我们在程序中使用通常会转为`createTime`。这时，dbAttr1即为`create_time`，而attr1即为`createTime`。
-
-之后直接以这张映射表为参数实例化sel语句生成器。
-
 ```javascript
 let DB = require('gen-sql');
 
-let d = new DB(orm);
+let d = new DB();
 ```
 
-之后执行对应的语句即可生成对应的sql语句。
+之后执行对应的语句即可生成对应的sql语句和data数组，对应data数组的位置在sql语句中会用?占位。
 
 
 ## 增语句
@@ -41,8 +26,6 @@ let d = new DB(orm);
 ```javascript
 d.add({
   table: 'xxx', // 表名
-  key: 'xxx', // 主键，默认为id
-  isIgnoreKey: true, // 生成的语句，是否忽略主键，默认为true
   data: {
     // 插入的数据，可为数组，如下面的例子
     xxx: 123,

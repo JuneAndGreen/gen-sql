@@ -56,7 +56,7 @@ describe('add module', function() {
                 		head: 'asdherjhasd'
               	}]
             });
-            ret.sql.should.be.eql('INSERT INTO user ( username , password , email , sex , description , head ) VALUES ( (? , ? , ? , ? , ? , ?) , (? , ? , ? , ? , ? , ?) , (? , ? , ? , ? , ? , ?) )');
+            ret.sql.should.be.eql('INSERT INTO user ( username , password , email , sex , description , head ) VALUES (? , ? , ? , ? , ? , ?) , (? , ? , ? , ? , ? , ?) , (? , ? , ? , ? , ? , ?)');
             ret.data.should.be.eql(['asdasd', 12345, 'asd@as.sdf', 1, 'yoyo', 'asdasd', 'qqwwrr', 12345, 'qqwwee@yee.sdf', 0, 'nnn', 'sw', 'hwerwer', 12345, 'asd@hqwe.sdf', 1, 'wetttt', 'asdherjhasd']);
         });
     });

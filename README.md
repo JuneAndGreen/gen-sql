@@ -71,6 +71,18 @@ d.del({
 ```javascript
 d.del({
   table: 'xxx', // 表名
+  conditionType: 'or', // 条件之间使用or连接
+  condition: {
+    // 条件，值和key之间用=号连接，条件之间使用or连接
+    xxx: 'gasgg',
+		yyy: 1322456678112
+	}
+});
+```
+
+```javascript
+d.del({
+  table: 'xxx', // 表名
   condition: {
     // 条件可为多值，最终生成in语句
 		id: [12, 22, 55, 66]

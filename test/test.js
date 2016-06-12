@@ -56,7 +56,7 @@ describe('add module', function() {
                 		head: 'asdherjhasd'
               	}]
             });
-            ret.sql.should.be.eql('INSERT INTO user ( username , password , email , sex , description , head ) VALUES ( (? , ? , ? , ? , ? , ?) , (? , ? , ? , ? , ? , ?) , (? , ? , ? , ? , ? , ?) )');
+            ret.sql.should.be.eql('INSERT INTO user ( username , password , email , sex , description , head ) VALUES (? , ? , ? , ? , ? , ?) , (? , ? , ? , ? , ? , ?) , (? , ? , ? , ? , ? , ?)');
             ret.data.should.be.eql(['asdasd', 12345, 'asd@as.sdf', 1, 'yoyo', 'asdasd', 'qqwwrr', 12345, 'qqwwee@yee.sdf', 0, 'nnn', 'sw', 'hwerwer', 12345, 'asd@hqwe.sdf', 1, 'wetttt', 'asdherjhasd']);
         });
     });
@@ -91,6 +91,22 @@ describe('del module', function() {
                 }
             });
             ret.sql.should.be.eql('DELETE FROM share WHERE username = ? AND create_time = ? AND parent_id = ?');
+            ret.data.should.be.eql(['gasgg', 1322456678112, 14]);
+        });
+    });
+
+    describe('action1', function() {
+        it('删sql，条件为对象，条件使用or连接', function() {
+            var ret = d.del({
+                table: 'share',
+                conditionType: 'or',
+                condition: {
+                    username: 'gasgg',
+                    createTime: 1322456678112,
+                    parentId: 14
+                }
+            });
+            ret.sql.should.be.eql('DELETE FROM share WHERE username = ? OR create_time = ? OR parent_id = ?');
             ret.data.should.be.eql(['gasgg', 1322456678112, 14]);
         });
     });
@@ -342,7 +358,7 @@ describe('find module', function() {
                 },
                 condition: 's.id = 123'
             });
-            ret.sql.should.be.eql('SELECT * FROM share AS s WHERE s.id = 123');
+            ret.sql.should.be.eql('SELECT * FROM share AS "s" WHERE s.id = 123');
             ret.data.should.be.eql([]);
         });
     });
@@ -366,7 +382,7 @@ describe('find module', function() {
                 }],
                 condition: 's.id = 123'
             });
-            ret.sql.should.be.eql('SELECT * FROM share AS s FULL JOIN user AS u ON u.username = s.username LEFT JOIN blog AS b ON b.username = s.username WHERE s.id = 123');
+            ret.sql.should.be.eql('SELECT * FROM share AS "s" FULL JOIN user AS "u" ON u.username = s.username LEFT JOIN blog AS "b" ON b.username = s.username WHERE s.id = 123');
             ret.data.should.be.eql([]);
         });
     });
@@ -406,7 +422,7 @@ describe('find module', function() {
                 },
                 condition: 'id = 123'
             });
-            ret.sql.should.be.eql('SELECT u.email , u.description , s.id , s.username , u.username AS linkUsername FROM share AS s LEFT JOIN user AS u ON u.username = s.username WHERE id = 123');
+            ret.sql.should.be.eql('SELECT u.email , u.description , s.id , s.username , u.username AS "linkUsername" FROM share AS "s" LEFT JOIN user AS "u" ON u.username = s.username WHERE id = 123');
             ret.data.should.be.eql([]);
         });
     });

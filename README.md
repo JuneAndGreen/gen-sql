@@ -71,12 +71,11 @@ d.del({
 ```javascript
 d.del({
   table: 'xxx', // 表名
-  conditionType: 'or', // 条件之间使用or连接
-  condition: {
-    // 条件，值和key之间用=号连接，条件之间使用or连接
-    xxx: 'gasgg',
-		yyy: 1322456678112
-	}
+  condition: [
+    // 条件，值和key之间用=号连接，条件之间使用and连接，而每个对象之间会用or连接
+    {xxx: 'gasgg'},
+		{yyy: 1322456678112}
+	]
 });
 ```
 

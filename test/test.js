@@ -90,7 +90,7 @@ describe('del module', function() {
           parentId: 14
         }
       });
-      ret.sql.should.be.eql('DELETE FROM share WHERE username = ? AND create_time = ? AND parent_id = ?');
+      ret.sql.should.be.eql('DELETE FROM share WHERE share.username = ? AND share.create_time = ? AND share.parent_id = ?');
       ret.data.should.be.eql(['gasgg', 1322456678112, 14]);
     });
   });
@@ -105,7 +105,7 @@ describe('del module', function() {
           {parentId: 14}
         ]
       });
-      ret.sql.should.be.eql('DELETE FROM share WHERE username = ? OR create_time = ? OR parent_id = ?');
+      ret.sql.should.be.eql('DELETE FROM share WHERE share.username = ? OR share.create_time = ? OR share.parent_id = ?');
       ret.data.should.be.eql(['gasgg', 1322456678112, 14]);
     });
   });
@@ -118,7 +118,7 @@ describe('del module', function() {
           id: [12, 22, 55, 66]
         }
       });
-      ret.sql.should.be.eql('DELETE FROM share WHERE id in (? , ? , ? , ?)');
+      ret.sql.should.be.eql('DELETE FROM share WHERE share.id in (? , ? , ? , ?)');
       ret.data.should.be.eql([12, 22, 55, 66]);
     });
   });
@@ -132,7 +132,7 @@ describe('del module', function() {
           parentId: [002, 12]
         }
       });
-      ret.sql.should.be.eql('DELETE FROM share WHERE id in (? , ? , ? , ?) AND parent_id in (? , ?)');
+      ret.sql.should.be.eql('DELETE FROM share WHERE share.id in (? , ? , ? , ?) AND share.parent_id in (? , ?)');
       ret.data.should.be.eql([12, 22, 55, 66, 2, 12]);
     });
   });
@@ -175,7 +175,7 @@ describe('update module', function() {
           parentId: 14
         }
       });
-      ret.sql.should.be.eql('UPDATE share SET username = ?,parent_id = ? WHERE username = ? AND create_time = ? AND parent_id = ?');
+      ret.sql.should.be.eql('UPDATE share SET username = ?,parent_id = ? WHERE share.username = ? AND share.create_time = ? AND share.parent_id = ?');
       ret.data.should.be.eql(['ggsd', 3434, 'gasgg', 1322456678112, 14]);
     });
   });
@@ -192,7 +192,7 @@ describe('update module', function() {
           id: [12, 22, 55, 66]
         }
       });
-      ret.sql.should.be.eql('UPDATE share SET username = ?,parent_id = ? WHERE id in (? , ? , ? , ?)');
+      ret.sql.should.be.eql('UPDATE share SET username = ?,parent_id = ? WHERE share.id in (? , ? , ? , ?)');
       ret.data.should.be.eql(['ggsd', 3434, 12, 22, 55, 66]);
     });
   });
@@ -210,7 +210,7 @@ describe('update module', function() {
           parentId: [002, 12]
         }
       });
-      ret.sql.should.be.eql('UPDATE share SET username = ?,parent_id = ? WHERE id in (? , ? , ? , ?) AND parent_id in (? , ?)');
+      ret.sql.should.be.eql('UPDATE share SET username = ?,parent_id = ? WHERE share.id in (? , ? , ? , ?) AND share.parent_id in (? , ?)');
       ret.data.should.be.eql(['ggsd', 3434, 12, 22, 55, 66, 2, 12]);
     });
   });
@@ -377,12 +377,17 @@ describe('find module', function() {
           on: 'u.username = s.username'
         }, {
           table: 'blog',
-          on: 'b.username = s.username'
+          on: {
+            def: 'b.username = s.username',
+            condition: {
+              a: 'sss'
+            }
+          }
         }],
         condition: 's.id = 123'
       });
-      ret.sql.should.be.eql('SELECT * FROM share AS "s" FULL JOIN user AS "u" ON u.username = s.username LEFT JOIN blog AS "b" ON b.username = s.username WHERE s.id = 123');
-      ret.data.should.be.eql([]);
+      ret.sql.should.be.eql('SELECT * FROM share AS "s" FULL JOIN user AS "u" ON u.username = s.username LEFT JOIN blog AS "b" ON b.username = s.username AND share.a = ? WHERE s.id = 123');
+      ret.data.should.be.eql(['sss']);
     });
   });
 

@@ -152,7 +152,10 @@ d.find({
     // 需要进行连接的表，可传入数组
     table: 'yyy', // 要连接的表名
     type: 'left', // 连接方式，支持right\inner\full\left四种方式，默认为left
-    on: 'id = name' // 连接条件，即ON语句
+    on: { // 连接条件，值可为字符串，即ON语句，如 'id = name' ，亦可为如下对象
+      def: 'id = name', // 会用AND的方式与下面对象连接
+      condition: {} // 结构如同上面的condition字段
+    }
   },
   group: {
     // 分组查询

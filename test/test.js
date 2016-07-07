@@ -357,7 +357,7 @@ describe('find module', function() {
         },
         condition: 's.id = 123'
       });
-      ret.sql.should.be.eql('SELECT * FROM share AS "s" WHERE s.id = 123');
+      ret.sql.should.be.eql('SELECT * FROM share AS s WHERE s.id = 123');
       ret.data.should.be.eql([]);
     });
   });
@@ -386,7 +386,7 @@ describe('find module', function() {
         }],
         condition: 's.id = 123'
       });
-      ret.sql.should.be.eql('SELECT * FROM share AS "s" FULL JOIN user AS "u" ON u.username = s.username LEFT JOIN blog AS "b" ON b.username = s.username AND share.a = ? WHERE s.id = 123');
+      ret.sql.should.be.eql('SELECT * FROM share AS s FULL JOIN user AS u ON u.username = s.username LEFT JOIN blog AS b ON b.username = s.username AND share.a = ? WHERE s.id = 123');
       ret.data.should.be.eql(['sss']);
     });
   });
@@ -426,7 +426,7 @@ describe('find module', function() {
         },
         condition: 'id = 123'
       });
-      ret.sql.should.be.eql('SELECT u.email , u.description , s.id , s.username , u.username AS "linkUsername" FROM share AS "s" LEFT JOIN user AS "u" ON u.username = s.username WHERE id = 123');
+      ret.sql.should.be.eql('SELECT u.email , u.description , s.id , s.username , u.username AS "linkUsername" FROM share AS s LEFT JOIN user AS u ON u.username = s.username WHERE id = 123');
       ret.data.should.be.eql([]);
     });
   });

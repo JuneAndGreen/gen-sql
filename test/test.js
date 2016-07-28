@@ -24,7 +24,7 @@ describe('add module', function() {
       		head: 'asdasd'
       	}
       });
-      ret.sql.should.be.eql('INSERT INTO user ( username , password , email , sex , description , head ) VALUES ( ? , ? , ? , ? , ? , ? )');
+      ret.sql.should.be.eql('INSERT INTO `user` ( username , password , email , sex , description , head ) VALUES ( ? , ? , ? , ? , ? , ? )');
       ret.data.should.be.eql(['asdasd', 12345, 'asd@as.sdf', 1, 'yoyo', 'asdasd']);
     });
   });
@@ -56,7 +56,7 @@ describe('add module', function() {
       		head: 'asdherjhasd'
       	}]
       });
-      ret.sql.should.be.eql('INSERT INTO user ( username , password , email , sex , description , head ) VALUES (? , ? , ? , ? , ? , ?) , (? , ? , ? , ? , ? , ?) , (? , ? , ? , ? , ? , ?)');
+      ret.sql.should.be.eql('INSERT INTO `user` ( username , password , email , sex , description , head ) VALUES (? , ? , ? , ? , ? , ?) , (? , ? , ? , ? , ? , ?) , (? , ? , ? , ? , ? , ?)');
       ret.data.should.be.eql(['asdasd', 12345, 'asd@as.sdf', 1, 'yoyo', 'asdasd', 'qqwwrr', 12345, 'qqwwee@yee.sdf', 0, 'nnn', 'sw', 'hwerwer', 12345, 'asd@hqwe.sdf', 1, 'wetttt', 'asdherjhasd']);
     });
   });
@@ -75,7 +75,7 @@ describe('del module', function() {
         table: 'share',
         condition: 'id = 123'
       });
-      ret.sql.should.be.eql('DELETE FROM share WHERE id = 123');
+      ret.sql.should.be.eql('DELETE FROM `share` WHERE id = 123');
       ret.data.should.be.eql([]);
     });
   });
@@ -90,7 +90,7 @@ describe('del module', function() {
           parentId: 14
         }
       });
-      ret.sql.should.be.eql('DELETE FROM share WHERE share.username = ? AND share.create_time = ? AND share.parent_id = ?');
+      ret.sql.should.be.eql('DELETE FROM `share` WHERE `share`.username = ? AND `share`.create_time = ? AND `share`.parent_id = ?');
       ret.data.should.be.eql(['gasgg', 1322456678112, 14]);
     });
   });
@@ -105,7 +105,7 @@ describe('del module', function() {
           {parentId: 14}
         ]
       });
-      ret.sql.should.be.eql('DELETE FROM share WHERE share.username = ? OR share.create_time = ? OR share.parent_id = ?');
+      ret.sql.should.be.eql('DELETE FROM `share` WHERE `share`.username = ? OR `share`.create_time = ? OR `share`.parent_id = ?');
       ret.data.should.be.eql(['gasgg', 1322456678112, 14]);
     });
   });
@@ -118,7 +118,7 @@ describe('del module', function() {
           id: [12, 22, 55, 66]
         }
       });
-      ret.sql.should.be.eql('DELETE FROM share WHERE share.id in (? , ? , ? , ?)');
+      ret.sql.should.be.eql('DELETE FROM `share` WHERE `share`.id in (? , ? , ? , ?)');
       ret.data.should.be.eql([12, 22, 55, 66]);
     });
   });
@@ -132,7 +132,7 @@ describe('del module', function() {
           parentId: [002, 12]
         }
       });
-      ret.sql.should.be.eql('DELETE FROM share WHERE share.id in (? , ? , ? , ?) AND share.parent_id in (? , ?)');
+      ret.sql.should.be.eql('DELETE FROM `share` WHERE `share`.id in (? , ? , ? , ?) AND `share`.parent_id in (? , ?)');
       ret.data.should.be.eql([12, 22, 55, 66, 2, 12]);
     });
   });
@@ -156,7 +156,7 @@ describe('update module', function() {
         },
         condition: 'id = 123'
       });
-      ret.sql.should.be.eql('UPDATE share SET username = ?,parent_id = ? WHERE id = 123');
+      ret.sql.should.be.eql('UPDATE `share` SET username = ?,parent_id = ? WHERE id = 123');
       ret.data.should.be.eql(['ggsd', 3434]);
     });
   });
@@ -175,7 +175,7 @@ describe('update module', function() {
           parentId: 14
         }
       });
-      ret.sql.should.be.eql('UPDATE share SET username = ?,parent_id = ? WHERE share.username = ? AND share.create_time = ? AND share.parent_id = ?');
+      ret.sql.should.be.eql('UPDATE `share` SET username = ?,parent_id = ? WHERE `share`.username = ? AND `share`.create_time = ? AND `share`.parent_id = ?');
       ret.data.should.be.eql(['ggsd', 3434, 'gasgg', 1322456678112, 14]);
     });
   });
@@ -192,7 +192,7 @@ describe('update module', function() {
           id: [12, 22, 55, 66]
         }
       });
-      ret.sql.should.be.eql('UPDATE share SET username = ?,parent_id = ? WHERE share.id in (? , ? , ? , ?)');
+      ret.sql.should.be.eql('UPDATE `share` SET username = ?,parent_id = ? WHERE `share`.id in (? , ? , ? , ?)');
       ret.data.should.be.eql(['ggsd', 3434, 12, 22, 55, 66]);
     });
   });
@@ -210,7 +210,7 @@ describe('update module', function() {
           parentId: [002, 12]
         }
       });
-      ret.sql.should.be.eql('UPDATE share SET username = ?,parent_id = ? WHERE share.id in (? , ? , ? , ?) AND share.parent_id in (? , ?)');
+      ret.sql.should.be.eql('UPDATE `share` SET username = ?,parent_id = ? WHERE `share`.id in (? , ? , ? , ?) AND `share`.parent_id in (? , ?)');
       ret.data.should.be.eql(['ggsd', 3434, 12, 22, 55, 66, 2, 12]);
     });
   });
@@ -230,7 +230,7 @@ describe('find module', function() {
         table: 'share',
         condition: 'id = 123'
       });
-      ret.sql.should.be.eql('SELECT * FROM share WHERE id = 123');
+      ret.sql.should.be.eql('SELECT * FROM `share` WHERE id = 123');
       ret.data.should.be.eql([]);
     });
   });
@@ -245,7 +245,7 @@ describe('find module', function() {
           parentId: 14
         }
       });
-      ret.sql.should.be.eql('SELECT * FROM share WHERE share.username = ? AND share.create_time = ? AND share.parent_id = ?');
+      ret.sql.should.be.eql('SELECT * FROM `share` WHERE `share`.username = ? AND `share`.create_time = ? AND `share`.parent_id = ?');
       ret.data.should.be.eql(['gasgg', 1322456678112, 14]);
     });
   });
@@ -258,7 +258,7 @@ describe('find module', function() {
           id: [12, 22, 55, 66]
         }
       });
-      ret.sql.should.be.eql('SELECT * FROM share WHERE share.id in (? , ? , ? , ?)');
+      ret.sql.should.be.eql('SELECT * FROM `share` WHERE `share`.id in (? , ? , ? , ?)');
       ret.data.should.be.eql([12, 22, 55, 66]);
     });
   });
@@ -272,7 +272,7 @@ describe('find module', function() {
           parentId: [002, 12]
         }
       });
-      ret.sql.should.be.eql('SELECT * FROM share WHERE share.id in (? , ? , ? , ?) AND share.parent_id in (? , ?)');
+      ret.sql.should.be.eql('SELECT * FROM `share` WHERE `share`.id in (? , ? , ? , ?) AND `share`.parent_id in (? , ?)');
       ret.data.should.be.eql([12, 22, 55, 66, 2, 12]);
     });
   });
@@ -285,7 +285,7 @@ describe('find module', function() {
         limit: 20,
         condition: 'id = 123'
       });
-      ret.sql.should.be.eql('SELECT * FROM share WHERE id = 123 LIMIT ? OFFSET ?');
+      ret.sql.should.be.eql('SELECT * FROM `share` WHERE id = 123 LIMIT ? OFFSET ?');
       ret.data.should.be.eql([20, 10]);
     });
   });
@@ -303,7 +303,7 @@ describe('find module', function() {
         },
         condition: 'id = 123'
       });
-      ret.sql.should.be.eql('SELECT * FROM share WHERE id = 123 OR share.username LIKE "%xxx" OR share.id LIKE "%xxx" LIMIT ? OFFSET ?');
+      ret.sql.should.be.eql('SELECT * FROM `share` WHERE id = 123 OR `share`.username LIKE "%xxx" OR `share`.id LIKE "%xxx" LIMIT ? OFFSET ?');
       ret.data.should.be.eql([20, 10]);
     });
   });
@@ -325,7 +325,7 @@ describe('find module', function() {
         }],
         condition: 'id = 123'
       });
-      ret.sql.should.be.eql('SELECT * FROM share WHERE id = 123 OR share.username LIKE "%xxx" OR share.id LIKE "%xxx" OR share.create_time LIKE "%yyy%" LIMIT ? OFFSET ?');
+      ret.sql.should.be.eql('SELECT * FROM `share` WHERE id = 123 OR `share`.username LIKE "%xxx" OR `share`.id LIKE "%xxx" OR `share`.create_time LIKE "%yyy%" LIMIT ? OFFSET ?');
       ret.data.should.be.eql([20, 10]);
     });
   });
@@ -343,7 +343,7 @@ describe('find module', function() {
         }],
         condition: 'id = 123'
       });
-      ret.sql.should.be.eql('SELECT * FROM share WHERE id = 123 ORDER BY other.username DESC , share.create_time ASC');
+      ret.sql.should.be.eql('SELECT * FROM `share` WHERE id = 123 ORDER BY other.username DESC , `share`.create_time ASC');
       ret.data.should.be.eql([]);
     });
   });
@@ -357,7 +357,7 @@ describe('find module', function() {
         },
         condition: 's.id = 123'
       });
-      ret.sql.should.be.eql('SELECT * FROM share AS s WHERE s.id = 123');
+      ret.sql.should.be.eql('SELECT * FROM `share` AS s WHERE s.id = 123');
       ret.data.should.be.eql([]);
     });
   });
@@ -386,7 +386,7 @@ describe('find module', function() {
         }],
         condition: 's.id = 123'
       });
-      ret.sql.should.be.eql('SELECT * FROM share AS s FULL JOIN user AS u ON u.username = s.username LEFT JOIN blog AS b ON b.username = s.username AND share.a = ? WHERE s.id = 123');
+      ret.sql.should.be.eql('SELECT * FROM `share` AS s FULL JOIN `user` AS u ON u.username = s.username LEFT JOIN `blog` AS b ON b.username = s.username AND `share`.a = ? WHERE s.id = 123');
       ret.data.should.be.eql(['sss']);
     });
   });
@@ -400,7 +400,7 @@ describe('find module', function() {
           having: 'COUNT(*) > 10'
         }
       });
-      ret.sql.should.be.eql('SELECT * FROM share GROUP BY username HAVING COUNT(*) > 10');
+      ret.sql.should.be.eql('SELECT * FROM `share` GROUP BY username HAVING COUNT(*) > 10');
       ret.data.should.be.eql([]);
     });
   });
@@ -426,7 +426,7 @@ describe('find module', function() {
         },
         condition: 'id = 123'
       });
-      ret.sql.should.be.eql('SELECT u.email , u.description , s.id , s.username , u.username AS "linkUsername" FROM share AS s LEFT JOIN user AS u ON u.username = s.username WHERE id = 123');
+      ret.sql.should.be.eql('SELECT u.email , u.description , s.id , s.username , u.username AS "linkUsername" FROM `share` AS s LEFT JOIN `user` AS u ON u.username = s.username WHERE id = 123');
       ret.data.should.be.eql([]);
     });
   });
@@ -440,7 +440,7 @@ describe('find module', function() {
         table: 'share',
         condition: 'id < 10'
       }]);
-      ret.sql.should.be.eql('SELECT * FROM share WHERE id = 123 UNION SELECT * FROM share WHERE id < 10');
+      ret.sql.should.be.eql('SELECT * FROM `share` WHERE id = 123 UNION SELECT * FROM `share` WHERE id < 10');
       ret.data.should.be.eql([]);
     });
   });

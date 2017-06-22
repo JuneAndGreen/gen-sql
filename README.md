@@ -148,6 +148,7 @@ d.find({
     },
     attr: ['attr2', 'attr3'] // 需要返回的字段，不带别名
   },
+  // field: 'attr_1 as attr1', // field 字段同样支持传字符串进来
   join: {
     // 需要进行连接的表，可传入数组
     table: 'yyy', // 要连接的表名

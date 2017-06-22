@@ -432,6 +432,17 @@ describe('find module', function() {
     });
 
     describe('action12', function() {
+        it('查sql，字段为字符串', function() {
+            var ret = d.find({
+                table: 'share',
+                field: 'COUNT(*) AS `total`'
+            });
+            ret.sql.should.be.eql('SELECT COUNT(*) AS `total` FROM `share`');
+            ret.data.should.be.eql([]);
+        });
+    });
+
+    describe('action13', function() {
         it('查sql，条件为字符串，使用union', function() {
             var ret = d.find([{
                 table: 'share',

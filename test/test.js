@@ -137,6 +137,19 @@ describe('del module', function() {
         });
     });
 
+    describe('action5', function() {
+        it('删sql，条件为对象，只以对象值作为条件', function() {
+            var ret = d.del({
+                table: 'share',
+                condition: {
+                    '0': 'id < 12',
+                    '11': 'id > 1'
+                }
+            });
+            ret.sql.should.be.eql('DELETE FROM `share` WHERE id < 12 AND id > 1');
+        });
+    });
+
 });
 
 

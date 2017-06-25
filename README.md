@@ -89,6 +89,17 @@ d.del({
 });
 ```
 
+```javascript
+d.del({
+  table: 'xxx', // 表名
+  condition: {
+    // 条件，当key为数字时，只使用值作为条件，条件之间使用and连接
+    '0': 'ss < 12',
+    '12': 'ss > 1'
+  }
+});
+```
+
 ## 改语句
 
 ```javascript
@@ -98,36 +109,7 @@ d.update({
     // 要更新的字段
     xxx: 'xxx'
   },
-  condition: 'where id = 123' // 条件
-});
-```
-
-```javascript
-d.update({
-  table: 'xxx', // 表名
-  data: {
-    // 要更新的字段
-    xxx: 'xxx'
-  },
-  condition: {
-    // 条件，值和key之间用=号连接，条件之间使用and连接
-    xxx: 'gasgg',
-		yyy: 1322456678112
-	}
-});
-```
-
-```javascript
-d.update({
-  table: 'xxx', // 表名
-  data: {
-    // 要更新的字段
-    xxx: 'xxx'
-  },
-  condition: {
-    // 条件可为多值，最终生成in语句
-		id: [12, 22, 55, 66]
-	}
+  condition: {}, // 条件，使用方式同删语句，支持字符串和对象
 });
 ```
 
@@ -138,7 +120,7 @@ d.update({
 ```javascript
 d.find({
   table: 'xxx', // 表名
-  condition: {}, // 条件，使用方式同删和改语句，支持字符串和对象
+  condition: {}, // 条件，使用方式同删语句，支持字符串和对象
   alias: {'xxx': 'a'}, // 表的别名对象，会生成AS语句
   field: {
     // 获取的字段，当不传时返回的是table字段对应表的所有字段

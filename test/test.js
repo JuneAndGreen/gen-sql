@@ -1,7 +1,7 @@
 var assert = require('assert');
 var should = require('should');
 
-var DB = require('../lib/db');
+var DB = require('../index');
 
 var d = new DB();
 
@@ -86,8 +86,8 @@ describe('del module', function() {
                 table: 'share',
                 condition: {
                     username: 'gasgg',
-                    createTime: 1322456678112,
-                    parentId: 14
+                    create_time: 1322456678112,
+                    parent_id: 14
                 }
             });
             ret.sql.should.be.eql('DELETE FROM `share` WHERE `share`.`username` = ? AND `share`.`create_time` = ? AND `share`.`parent_id` = ?');
@@ -101,8 +101,8 @@ describe('del module', function() {
                 table: 'share',
                 condition: [
                     {username: 'gasgg'},
-                    {createTime: 1322456678112},
-                    {parentId: 14}
+                    {create_time: 1322456678112},
+                    {parent_id: 14}
                 ]
             });
             ret.sql.should.be.eql('DELETE FROM `share` WHERE `share`.`username` = ? OR `share`.`create_time` = ? OR `share`.`parent_id` = ?');
@@ -129,7 +129,7 @@ describe('del module', function() {
                 table: 'share',
                 condition: {
                     id: [12, 22, 55, 66],
-                    parentId: [002, 12]
+                    parent_id: [002, 12]
                 }
             });
             ret.sql.should.be.eql('DELETE FROM `share` WHERE `share`.`id` in (? , ? , ? , ?) AND `share`.`parent_id` in (? , ?)');
@@ -165,7 +165,7 @@ describe('update module', function() {
                 table: 'share',
                 data: {
                     username: 'ggsd',
-                    parentId: 3434
+                    parent_id: 3434
                 },
                 condition: 'id = 123'
             });
@@ -180,12 +180,12 @@ describe('update module', function() {
                 table: 'share',
                 data: {
                     username: 'ggsd',
-                    parentId: 3434
+                    parent_id: 3434
                 },
                 condition: {
                     username: 'gasgg',
-                    createTime: 1322456678112,
-                    parentId: 14
+                    create_time: 1322456678112,
+                    parent_id: 14
                 }
             });
             ret.sql.should.be.eql('UPDATE `share` SET `username` = ? , `parent_id` = ? WHERE `share`.`username` = ? AND `share`.`create_time` = ? AND `share`.`parent_id` = ?');
@@ -199,7 +199,7 @@ describe('update module', function() {
                 table: 'share',
                 data: {
                     username: 'ggsd',
-                    parentId: 3434
+                    parent_id: 3434
                 },
                 condition: {
                     id: [12, 22, 55, 66]
@@ -216,11 +216,11 @@ describe('update module', function() {
                 table: 'share',
                 data: {
                     username: 'ggsd',
-                    parentId: 3434
+                    parent_id: 3434
                 },
                 condition: {
                     id: [12, 22, 55, 66],
-                    parentId: [002, 12]
+                    parent_id: [002, 12]
                 }
             });
             ret.sql.should.be.eql('UPDATE `share` SET `username` = ? , `parent_id` = ? WHERE `share`.`id` in (? , ? , ? , ?) AND `share`.`parent_id` in (? , ?)');
@@ -254,8 +254,8 @@ describe('find module', function() {
                 table: 'share',
                 condition: {
                     username: 'gasgg',
-                    createTime: 1322456678112,
-                    parentId: 14
+                    create_time: 1322456678112,
+                    parent_id: 14
                 }
             });
             ret.sql.should.be.eql('SELECT * FROM `share` WHERE `share`.`username` = ? AND `share`.`create_time` = ? AND `share`.`parent_id` = ?');
@@ -282,7 +282,7 @@ describe('find module', function() {
                 table: 'share',
                 condition: {
                     id: [12, 22, 55, 66],
-                    parentId: [002, 12]
+                    parent_id: [002, 12]
                 }
             });
             ret.sql.should.be.eql('SELECT * FROM `share` WHERE `share`.`id` in (? , ? , ? , ?) AND `share`.`parent_id` in (? , ?)');
@@ -334,7 +334,7 @@ describe('find module', function() {
                 }, {
                     value: 'yyy',
                     type: 'all',
-                    attr: 'createTime'
+                    attr: 'create_time'
                 }],
                 condition: 'id = 123'
             });
@@ -351,7 +351,7 @@ describe('find module', function() {
                     attr: 'other.username',
                     type: 'desc'
                 }, {
-                    attr: 'createTime',
+                    attr: 'create_time',
                     type: 'asc'
                 }],
                 condition: 'id = 123'

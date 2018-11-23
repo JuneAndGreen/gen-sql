@@ -1,8 +1,8 @@
 # gen-sql
 
-![](https://img.shields.io/npm/v/gen-sql.svg?style=flat)
-![](https://img.shields.io/travis/JuneAndGreen/gen-sql.svg)
-![](https://img.shields.io/npm/l/gen-sql.svg)
+[![](https://img.shields.io/npm/v/gen-sql.svg?style=flat)](https://www.npmjs.org/package/gen-sql)
+[![](https://img.shields.io/travis/JuneAndGreen/gen-sql.svg)](https://github.com/JuneAndGreen/gen-sql)
+[![](https://img.shields.io/npm/l/gen-sql.svg)](https://github.com/JuneAndGreen/gen-sql)
 
 ## 简介
 

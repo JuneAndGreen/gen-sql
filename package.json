@@ -4,10 +4,17 @@
   "description": "this is a sql generator",
   "main": "index.js",
   "scripts": {
-    "test": "node ./bin/test.js"
+    "test": "jest ./test.js --silent --bail",
+    "coverage": "jest ./test.js --coverage --coverageReporters=text-lcov | coveralls"
   },
   "directories": {
     "test": "test"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "index.js"
+    ]
   },
   "repository": {
     "type": "git",
@@ -24,7 +31,7 @@
   },
   "homepage": "https://github.com/JuneAndGreen/gen-sql#readme",
   "devDependencies": {
-    "mocha": "^2.4.5",
-    "should": "^8.3.1"
+    "coveralls": "^3.0.2",
+    "jest": "^23.6.0"
   }
 }

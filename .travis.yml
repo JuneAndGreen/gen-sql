@@ -4,3 +4,5 @@ node_js:
 script: npm run test
 before_script:
   - npm install
+after_script:
+  - npm run coverage

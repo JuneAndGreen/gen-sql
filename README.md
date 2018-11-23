@@ -1,5 +1,11 @@
 # gen-sql
 
+<p align="center">
+  <a href="https://www.npmjs.org/package/gen-sql"><img src="https://img.shields.io/npm/v/gen-sql.svg?style=flat"></a>
+  <a href="https://github.com/JuneAndGreen/gen-sql"><img src="https://img.shields.io/travis/JuneAndGreen/gen-sql.svg"></a>
+  <a href="https://github.com/JuneAndGreen/gen-sql"><img src="https://img.shields.io/npm/l/gen-sql.svg"></a>
+</p>
+
 ## 简介
 
 这是一个使用es6的一些特性实现的超级简单的sql语句生成器。

@@ -7,9 +7,6 @@
     "test": "jest ./test.js --silent --bail",
     "coverage": "jest ./test.js --coverage --coverageReporters=text-lcov | coveralls"
   },
-  "directories": {
-    "test": "test"
-  },
   "jest": {
     "testEnvironment": "node",
     "collectCoverageFrom": [
